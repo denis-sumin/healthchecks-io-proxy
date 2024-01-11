@@ -1,0 +1,19 @@
+version: "3.8"
+
+name: healthchecks-io-proxy
+
+services:
+    fastapi:
+        container_name: healthchecks-io-proxy
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: healthchecks-io-proxy
+        restart: unless-stopped
+#        env_file: .env
+        logging:
+            driver: "json-file"
+            options:
+                max-size: "500m"
+        ports:
+            - "8055:80"
